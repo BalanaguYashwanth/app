@@ -133,7 +133,7 @@ export const Donate = ({balance,ownerAddress,getTokenParsedFromWalletAccounts,ge
       });
       // console.log('wallet pubkey',provider.publicKey.toString())
       try {
-        const tx = program.rpc.transferNft({
+        const tx = await program.rpc.transferNft({
           accounts: {
             buyer: provider.publicKey,
             seller: patreonNewkeyPair.publicKey,
@@ -151,7 +151,7 @@ export const Donate = ({balance,ownerAddress,getTokenParsedFromWalletAccounts,ge
         });
         setMessage(`Transferring NFT to your wallet ${walletAddress} processing.`)
         // console.log("transfer token tx success", await tx);
-        if(tx){
+        if(tx && mintA){
           tokenVerify(mintA)
         }
       } catch (err) {
@@ -219,7 +219,7 @@ export const Donate = ({balance,ownerAddress,getTokenParsedFromWalletAccounts,ge
            {message && <mark>{message}</mark> }
             <br />
             {/* <button onClick={transfer_token}> Transfer </button> */}
-            <button onClick={donateWallet}> Join Now </button>
+           { ownerAddress !== walletAddress && <button onClick={donateWallet}> Join Now </button>}
            {/* { balance >= fundAmount+1 ?   : <mark> Please maintain minimum {fundAmount+1} SOL to perform transaction </mark> } */}
             {ownerAddress === walletAddress && <button onClick={withdrawWallet}> withdraw </button> }
             {/* <button onClick={()=>tokenVerify('6dErm7gPLP9FVHrwgGLgEVzrb7fqf7gYeJN64K4zgM8u')}> tokenVerify </button> */}
