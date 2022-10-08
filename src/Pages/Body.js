@@ -242,7 +242,7 @@ export const Body = ({walletAddress}) => {
                     {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
                    { 
                    
-                   !allowUser.includes(mint.account.patreonFundAddress.toString()) &&
+                   !(allowUser.includes(mint.account.patreonFundAddress.toString()) && mint.account.owner.toString() !== walletAddress) &&
                    <Donate balance={balance} ownerAddress={mint.account.owner.toString()} getTokenParsedFromWalletAccounts={getTokenParsedFromWalletAccounts} getProvider={getProvider} connection={connection} patreonFundAddressPDA={mint.account.patreonFundAddress.toString()} fundAmount={mint.account.amount.toNumber() > LAMPORTS_PER_SOL ? mint.account.amount.toNumber()/LAMPORTS_PER_SOL :mint.account.amount.toNumber() } Program={Program} idl={idl} programID={programID} patreonNewkeyPair={patreonNewkeyPair} walletAddress={walletAddress} SystemProgram={SystemProgram}  />
                   }
                     { 
