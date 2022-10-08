@@ -25,7 +25,7 @@ function Home() {
     if(solana)
     {
       const response = await solana.connect();
-       console.log("wallet address", response);
+      //  console.log("wallet address", response);
       setWalletAddress(response.publicKey.toString());
     }else{
       alert('phantom not connected')

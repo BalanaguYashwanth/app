@@ -67,7 +67,7 @@ export const Donate = ({balance,ownerAddress,getTokenParsedFromWalletAccounts,ge
         }
         // transfer_token()
       } catch (err) {
-        setMessage('Might be solana is down, please try after sometime')
+        setMessage('Might be solana is down or trying operational transactions continuously, please try after sometime')
         console.log(err);
       }
     };
@@ -219,8 +219,8 @@ export const Donate = ({balance,ownerAddress,getTokenParsedFromWalletAccounts,ge
            {message && <mark>{message}</mark> }
             <br />
             {/* <button onClick={transfer_token}> Transfer </button> */}
-           { ownerAddress !== walletAddress && <button onClick={donateWallet}> Join Now </button>}
-           {/* { balance >= fundAmount+1 ?   : <mark> Please maintain minimum {fundAmount+1} SOL to perform transaction </mark> } */}
+           {/* { ownerAddress !== walletAddress && <button onClick={donateWallet}> Join Now </button>} */}
+           { ownerAddress !== walletAddress && (balance >= fundAmount+1 ?  <button onClick={donateWallet}> Join Now </button>  : <mark> Please maintain minimum {fundAmount+1} SOL to perform transaction </mark> )}
             {ownerAddress === walletAddress && <button onClick={withdrawWallet}> withdraw </button> }
             {/* <button onClick={()=>tokenVerify('6dErm7gPLP9FVHrwgGLgEVzrb7fqf7gYeJN64K4zgM8u')}> tokenVerify </button> */}
             
